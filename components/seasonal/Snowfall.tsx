@@ -1,5 +1,4 @@
-import React, { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { Particle } from './Particle';
 
 const Snowfall: React.FC = () => (

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Particle } from './Particle';
 
 const FallingClovers: React.FC = () => (
