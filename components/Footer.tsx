@@ -32,7 +32,7 @@ const Footer: React.FC<FooterProps> = ({ onLogoClick }) => {
                &copy; {new Date().getFullYear()} {content.company.name}. All Rights Reserved.
              </p>
              <p className="text-gray-500 text-xs mt-1">
-              <a href="https://geotapmedia.com" target="_blank" rel="noopener noreferrer" className="hover:text-amber-600 transition-colors" onClick={(e) => e.stopPropagation()}>Powered by GeoTap Media</a>
+              <a href="https://victoryfinancialmarketing.geotapmedia.com" target="_blank" rel="noopener noreferrer" className="hover:text-amber-600 transition-colors" onClick={(e) => e.stopPropagation()}>Powered by Victory Financial Marketing</a>
              </p>
           </div>
           <div className="flex flex-col items-center md:items-end">
