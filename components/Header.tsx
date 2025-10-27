@@ -101,7 +101,7 @@ const Header: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Logo className="h-48" />
+            <Logo className="h-12" />
           </motion.a>
         </div>
         

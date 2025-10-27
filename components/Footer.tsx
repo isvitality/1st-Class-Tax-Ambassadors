@@ -27,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({ onLogoClick }) => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-8">
           <div className="cursor-pointer" onClick={handleLogoClick} title="Click 5 times to open theme tester">
-            <Logo className="h-44 mx-auto md:mx-0" textColor="text-gray-600"/>
+            <Logo className="h-11 mx-auto md:mx-0" textColor="text-gray-600"/>
              <p className="text-gray-500 text-sm mt-2">
                &copy; {new Date().getFullYear()} {content.company.name}. All Rights Reserved.
              </p>

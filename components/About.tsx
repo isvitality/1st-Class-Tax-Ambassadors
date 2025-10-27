@@ -104,7 +104,7 @@ const About: React.FC = () => {
                                     <img
                                         src={content.expert.image}
                                         alt={`Portrait of ${content.expert.name}`}
-                                        className="w-full h-full object-cover rounded-full transition-transform duration-500 hover:scale-105"
+                                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                                     />
                                 </div>
                             </div>

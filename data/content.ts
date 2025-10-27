@@ -65,7 +65,7 @@ export const content = {
   expert: {
     name: "Cyrel Carter",
     title: "Lead Tax Strategist",
-    image: "https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    image: "https://geotapmedia.com/FirstClassTaxAmbassadors/images/image8.jpeg",
     bio: "Cyrel Carter is a seasoned tax expert dedicated to empowering clients with the knowledge and strategies needed for long-term success. With a focus on personalized service, Cyrel ensures every client receives the expert guidance necessary to navigate the complexities of tax law and achieve their goals.",
     cta: "Schedule a Consultation"
   }
