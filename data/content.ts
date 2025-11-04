@@ -38,7 +38,7 @@ export const content = {
     title: "Ready to Master Your Taxes?",
     subtitle: "Contact us today for a free, no-obligation consultation. Let's make this year your best one yet.",
     email: "1stclasstaxambassadors@gmail.com",
-    phone: "(334) 733-1370"
+    phone: "(334) 487-5561"
   },
   magnet: {
     title: "Get Your Free Tax Guide",
