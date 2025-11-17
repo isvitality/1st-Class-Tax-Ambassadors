@@ -41,7 +41,7 @@ const LeadMagnet: React.FC = () => {
             
             <div className="mt-8 h-[550px]">
               <iframe
-                  src="https://api.leadconnectorhq.com/widget/form/hiZTiYVlK8ZKMq3RRqMh"
+                  src="https://40655cbc.sibforms.com/serve/MUIFAPvHxzbdPKtDQ9VLIsxRosui9pAGsvILewYwMdqgWBLddpe1IxCri9huTg8wJHrU9bDhhkyE2a4fiWdKtwQ51xBFLToZJDtQC3YFAaZtXaS0eerbu9ewKNZlLlU-N0MqZuPvVRF9r6lJfloyMgr8z1MQeOEv0x5JSQkTO-btath-4mMeAdLmT7Ugio0a-6AZJ_ghU9yE9eGmDw=="
                   style={{width: '100%', height: '100%', border: 'none', borderRadius: '3px'}}
                   id="inline-hiZTiYVlK8ZKMq3RRqMh" 
                   data-layout='{"id":"INLINE"}'
