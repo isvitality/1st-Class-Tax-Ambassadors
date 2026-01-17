@@ -1,4 +1,4 @@
-import { useSimulatedDate } from './useSimulatedDate';
+import { useSimulatedDateContext } from '../contexts/SimulatedDateContext';
 import { useState, useEffect } from 'react';
 
 export type TaxSeason = 'PRE_SEASON' | 'PEAK_SEASON' | 'OFF_SEASON';
@@ -22,21 +22,24 @@ interface TaxSeasonInfo {
 }
 
 export const useTaxSeason = (): TaxSeasonInfo => {
-  const [now, setNow] = useState(useSimulatedDate());
-  const simulatedDate = useSimulatedDate();
+  const { simulatedDate, isSimulating } = useSimulatedDateContext();
+  const [now, setNow] = useState(simulatedDate);
 
   useEffect(() => {
-    // If we're not simulating, we need a live timer for the countdown
-    if (simulatedDate.getTime() === new Date(simulatedDate).getTime()) {
+    // If not simulating, we need a live timer for the countdown.
+    if (!isSimulating) {
         const interval = setInterval(() => {
             setNow(new Date());
         }, 1000);
+        
+        // Cleanup function to clear the interval.
         return () => clearInterval(interval);
     } else {
-        // If we are simulating, just use the static simulated date
+        // When simulating, just use the static simulated date.
+        // This also ensures that if the theme changes, the 'now' state updates.
         setNow(simulatedDate);
     }
-  }, [simulatedDate]);
+  }, [simulatedDate, isSimulating]);
 
 
   const year = now.getFullYear();

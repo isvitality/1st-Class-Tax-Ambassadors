@@ -4,11 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expert Tax Preparation & Planning | 1st Class Tax Ambassadors</title>
-    <meta name="description" content="1st Class Tax Ambassadors: Expert tax preparation and planning. We help individuals and businesses minimize tax liability and maximize refunds for financial success." />
+    <title>Victory Tax Software</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -18,12 +17,21 @@
               sans: ['Inter', 'sans-serif'],
               serif: ['Playfair Display', 'serif'],
             },
+            colors: {
+              'brand-purple': '#2A2A57',
+              'brand-purple-dark': '#1C1C3D',
+              'brand-purple-cta': '#4d34b8',
+              'brand-gold': '#D6A13C',
+            }
           },
         },
       }
     </script>
     <style>
-      /* --- Micro-interactions --- */
+      body {
+        background-color: #1C1C3D;
+        color: #F3F4F6;
+      }
       .btn-shine {
         position: relative;
         overflow: hidden;
@@ -35,43 +43,125 @@
         left: -150%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
       }
       .btn-shine:hover::after {
         left: 150%;
       }
 
-      .nav-link {
-        position: relative;
-        padding-bottom: 4px;
+      /* Custom Backgrounds & Effects */
+      .text-shadow-dark {
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
       }
-      .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: #FDC100; /* Updated color */
-        transform: scaleX(0);
-        transform-origin: bottom right;
-        transition: transform 0.35s ease-out;
+      
+      .text-glow-gold-vip {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(214, 161, 60, 0.7), 0 0 20px rgba(214, 161, 60, 0.7), 0 0 25px rgba(214, 161, 60, 0.7);
       }
-      .nav-link:hover::after {
-        transform: scaleX(1);
-        transform-origin: bottom left;
+
+      .hero-glow-effect {
+        background: radial-gradient(circle at 50% 50%, rgba(77, 52, 184, 0.4) 0%, rgba(28, 28, 61, 0) 80%);
+      }
+
+      .shadow-glow-gold {
+        box-shadow: 0 0 20px rgba(214, 161, 60, 0.2);
+      }
+
+      .shadow-glow-purple {
+        box-shadow: 0 0 20px rgba(77, 52, 184, 0.3);
+      }
+
+      .gold-glow-strong {
+        box-shadow: 0 0 30px rgba(214, 161, 60, 0.5);
+      }
+      
+      .purple-glow-strong {
+        box-shadow: 0 0 35px rgba(77, 52, 184, 0.5);
+      }
+
+      /* For ValuedPartnership Section */
+      @keyframes animated-partnership-gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      .animated-partnership-background {
+        background: linear-gradient(120deg, #4d34b8, #D6A13C, #5f42d4, #4d34b8);
+        background-size: 400% 400%;
+        animation: animated-partnership-gradient 15s ease infinite;
+      }
+
+      /* For PremierServices Section */
+      .criss-cross-four-tone-pattern {
+        background-color: #0c0a09; /* Dark base color */
+        background-image:
+          repeating-linear-gradient(
+            45deg,
+            rgba(106, 13, 173, 0.5) 0%, rgba(106, 13, 173, 0.5) 24%,
+            rgba(255, 255, 255, 0.2) 24%, rgba(255, 255, 255, 0.2) 26%,
+            rgba(0, 0, 255, 0.5) 26%, rgba(0, 0, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 52%,
+            rgba(193, 154, 107, 0.5) 52%, rgba(193, 154, 107, 0.5) 76%,
+            rgba(255, 255, 255, 0.2) 76%, rgba(255, 255, 255, 0.2) 78%
+          ),
+          repeating-linear-gradient(
+            -45deg,
+            rgba(106, 13, 173, 0.5) 0%, rgba(106, 13, 173, 0.5) 24%,
+            rgba(255, 255, 255, 0.2) 24%, rgba(255, 255, 255, 0.2) 26%,
+            rgba(0, 0, 255, 0.5) 26%, rgba(0, 0, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 52%,
+            rgba(193, 154, 107, 0.5) 52%, rgba(193, 154, 107, 0.5) 76%,
+            rgba(255, 255, 255, 0.2) 76%, rgba(255, 255, 255, 0.2) 78%
+          );
+      }
+
+      /* For Toolkit Section Form */
+      .geometric-background {
+        background-color: #4D34B8;
+        background-image:
+          repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 78px,
+            rgba(201, 160, 64, 0.8) 78px,
+            rgba(201, 160, 64, 0.8) 80px
+          ),
+          linear-gradient(
+            110deg,
+            rgba(229, 231, 235, 0.85) 30%,
+            transparent 30.5%
+          ),
+          linear-gradient(
+            70deg,
+            rgba(80, 50, 180, 0.6) 65%,
+            transparent 65.5%
+          ),
+          linear-gradient(
+            -70deg,
+            rgba(40, 20, 140, 0.7) 40%,
+            transparent 40.5%
+          );
+        background-size:
+          80px 80px,
+          100% 100%,
+          100% 100%,
+          100% 100%;
       }
     </style>
+  <link rel="stylesheet" href="/index.css">
 <script type="importmap">
 {
   "imports": {
-    "react": "https://aistudiocdn.com/react@^19.1.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
-    "react/": "https://aistudiocdn.com/react@^19.1.1/",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.13",
-    "vite": "https://aistudiocdn.com/vite@^7.1.5",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.0.2"
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "framer-motion": "https://esm.sh/framer-motion@11.18.2?deps=react@18.3.1,react-dom@18.3.1",
+    "@google/genai": "https://esm.sh/@google/genai@1.20.0",
+    "docx": "https://esm.sh/docx@8.5.0"
   }
 }
 </script>
@@ -79,6 +169,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
-    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
   </body>
 </html>

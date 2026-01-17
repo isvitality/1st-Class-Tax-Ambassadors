@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { content } from '../data/content';
+import { useContent } from '../contexts/ContentContext';
 
 const MeetTheExpert: React.FC = () => {
+    const { content } = useContent();
+
     const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         const href = e.currentTarget.getAttribute('href');
@@ -17,6 +19,8 @@ const MeetTheExpert: React.FC = () => {
             });
         }
     };
+
+    if (!content) return null;
 
     return (
         <section id="expert" className="py-20 bg-gray-50 relative z-10">
