@@ -1,34 +1,20 @@
+
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 // --- Date Simulation Logic ---
-
-const getFloatingDate = (year: number, month: number, dayOfWeek: number, week: number): Date => {
-    // dayOfWeek: 0=Sun, 1=Mon, ..., 6=Sat
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
-    const firstOccurrence = 1 + (dayOfWeek - firstDayOfMonth + 7) % 7;
-    const date = firstOccurrence + (week - 1) * 7;
-    return new Date(year, month, date);
-};
 
 const themeDateMap: { [key: string]: (year: number) => Date } = {
   'PEAK_SEASON': (year) => new Date(year, 1, 15), // Feb 15
   'OFF_SEASON': (year) => new Date(year, 5, 15), // Jun 15
   'PRE_SEASON': (year) => new Date(year, 9, 15), // Oct 15
-  'winter': (year) => new Date(year, 0, 15), // Jan 15
-  'new_year': (year) => new Date(year, 0, 1), // Jan 1
-  'valentines': (year) => new Date(year, 1, 14), // Feb 14
+  'winter': (year) => new Date(year, 0, 15), // Jan 15 (Neutral)
+  'winter_holiday': (year) => new Date(year, 11, 25), // Dec 25 (Festive)
+  'valentines_day': (year) => new Date(year, 1, 14), // Feb 14
   'st_patricks': (year) => new Date(year, 2, 17), // Mar 17
-  'spring': (year) => new Date(year, 2, 25), // Mar 25
-  'easter': (year) => new Date(year, 3, 10), // Apr 10
-  'mothers_day': (year) => getFloatingDate(year, 4, 0, 2), // 2nd Sunday in May
-  'fathers_day': (year) => getFloatingDate(year, 5, 0, 3), // 3rd Sunday in June
+  'spring': (year) => new Date(year, 3, 25), // Apr 25
   'summer': (year) => new Date(year, 7, 15), // Aug 15
-  'patriotic': (year) => new Date(year, 6, 4), // July 4
-  'labor_day': (year) => getFloatingDate(year, 8, 1, 1), // 1st Monday in Sep
-  'early_fall': (year) => new Date(year, 8, 15), // Sep 15
   'halloween': (year) => new Date(year, 9, 31), // Oct 31
-  'thanksgiving': (year) => getFloatingDate(year, 10, 4, 4), // 4th Thursday in Nov
-  'christmas': (year) => new Date(year, 11, 25), // Dec 25
+  'none': () => new Date(),
 };
 
 const getInitialDate = (): { date: Date, isSimulating: boolean } => {
@@ -65,7 +51,7 @@ export const SimulatedDateProvider: React.FC<{ children: ReactNode }> = ({ child
         
         const timer = setInterval(() => {
             setDateState({ date: new Date(), isSimulating: false });
-        }, 60000); // Update every minute
+        }, 60000); 
         
         return () => clearInterval(timer);
     }, [isSimulating]);

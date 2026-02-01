@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSeasonalTheme, SeasonalTheme } from '../hooks/useSeasonalTheme';
@@ -9,7 +10,8 @@ const getHolidayMessage = (theme: SeasonalTheme): string | null => {
           `Happy New Year! Here's to a fresh start and a a prosperous year ahead.`,
           `Happy New Year! Wishing you a prosperous year ahead.`
         ],
-        'valentines': [
+        // Fix: Use 'valentines_day' to match SeasonalTheme type
+        'valentines_day': [
           `Happy Valentine's Day! Show your finances some love by getting your taxes done right.`,
           `Happy Valentine's Day! Let's get a tax outcome you'll love.`
         ],
@@ -45,7 +47,8 @@ const getHolidayMessage = (theme: SeasonalTheme): string | null => {
           `Happy Thanksgiving! We're grateful for the opportunity to help you build a secure future.`,
           `Happy Thanksgiving! We're grateful to help you plan for a secure future.`
         ],
-        'christmas': [
+        // Fix: Use 'winter_holiday' to match SeasonalTheme type
+        'winter_holiday': [
           `Merry Christmas! Wishing you a season of joy and a new year of tax peace of mind.`,
           `Merry Christmas! Wishing you joy, peace, and financial well-being.`
         ],

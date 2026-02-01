@@ -1,21 +1,23 @@
+
+// @google/genai - hook to manage seasonal themes based on simulated or real date.
 import { useSimulatedDate } from './useSimulatedDate';
 
 export type SeasonalTheme = 
-  | 'winter'
-  | 'spring'
-  | 'summer'
-  | 'patriotic'
-  | 'early_fall'
-  | 'halloween'
-  | 'thanksgiving'
-  | 'valentines'
-  | 'st_patricks'
-  | 'easter'
-  | 'mothers_day'
-  | 'fathers_day'
-  | 'labor_day'
-  | 'christmas'
-  | 'new_year'
+  | 'winter'          // Neutral (Jan/Feb)
+  | 'winter_holiday'  // Festive (Dec)
+  | 'new_year'        // Jan 1st
+  | 'valentines_day'  // Feb 1-15
+  | 'st_patricks'     // Mar 10-20
+  | 'spring'          // Mar/Apr/May fallback
+  | 'easter'          // Apr specific (if needed)
+  | 'mothers_day'     // May specific
+  | 'fathers_day'     // June specific
+  | 'summer'          // Jun/Jul/Aug fallback
+  | 'patriotic'       // July 4 window
+  | 'labor_day'       // Sep window
+  | 'early_fall'      // Sep/Oct fallback
+  | 'halloween'       // Oct 20-31
+  | 'thanksgiving'    // Nov specific
   | 'none';
 
 interface AccentImage {
@@ -32,8 +34,8 @@ const ACCENT_BASE_PATH = 'https://geotapmedia.com/VictoryFinancialServices/image
 
 const seasonalAccents: Partial<Record<SeasonalTheme, AccentImage[]>> = {
     'early_fall': [
-        { src: `${ACCENT_BASE_PATH}acorn.png`, alt: 'Acorn accent' },
-        { src: `${ACCENT_BASE_PATH}autumnleaf.png`, alt: 'Autumn leaf accent' }
+        { src: `${ACCENT_BASE_PATH}autumnleaf.png`, alt: 'Autumn leaf accent' },
+        { src: `${ACCENT_BASE_PATH}acorn.png`, alt: 'Acorn accent' }
     ],
     'thanksgiving': [
         { src: `${ACCENT_BASE_PATH}turkey.png`, alt: 'Turkey accent' },
@@ -43,24 +45,14 @@ const seasonalAccents: Partial<Record<SeasonalTheme, AccentImage[]>> = {
         { src: `${ACCENT_BASE_PATH}pumpkin.png`, alt: 'Pumpkin accent' },
         { src: `${ACCENT_BASE_PATH}spiderweb.png`, alt: 'Spiderweb accent' }
     ],
+    'winter_holiday': [
+        { src: `${ACCENT_BASE_PATH}reindeer.png`, alt: 'Reindeer accent' },
+        { src: `${ACCENT_BASE_PATH}santaclause.png`, alt: 'Santa Claus accent' }
+    ],
     'winter': [
-        { src: `${ACCENT_BASE_PATH}reindeer.png`, alt: 'Reindeer accent' },
-        { src: `${ACCENT_BASE_PATH}santaclause.png`, alt: 'Santa Claus accent' }
-    ],
-    'christmas': [
-        { src: `${ACCENT_BASE_PATH}reindeer.png`, alt: 'Reindeer accent' },
-        { src: `${ACCENT_BASE_PATH}santaclause.png`, alt: 'Santa Claus accent' }
-    ],
-    'new_year': [
         { src: `${ACCENT_BASE_PATH}patrioticstar.png`, alt: 'Star accent' }
     ],
-    'patriotic': [
-        { src: `${ACCENT_BASE_PATH}patrioticstar.png`, alt: 'Patriotic star accent' }
-    ],
-    'labor_day': [
-        { src: `${ACCENT_BASE_PATH}patrioticstar.png`, alt: 'Star accent' }
-    ],
-    'valentines': [
+    'valentines_day': [
         { src: `${ACCENT_BASE_PATH}valentines.png`, alt: 'Valentine heart accent' }
     ],
     'spring': [
@@ -73,57 +65,52 @@ const seasonalAccents: Partial<Record<SeasonalTheme, AccentImage[]>> = {
     'st_patricks': [
         { src: `${ACCENT_BASE_PATH}stpatricksday.png`, alt: 'Shamrock accent' }
     ],
-    'easter': [
-        { src: `${ACCENT_BASE_PATH}easterbunny.png`, alt: 'Easter bunny accent' }
-    ],
-    'mothers_day': [
-        { src: `${ACCENT_BASE_PATH}mothersday.png`, alt: 'Mothers day flower accent' }
-    ],
-    'fathers_day': [
-        { src: `${ACCENT_BASE_PATH}fathersday.png`, alt: 'Fathers day tie accent' }
-    ],
 };
 
 export const useSeasonalTheme = (): SeasonalThemeInfo => {
   const now = useSimulatedDate();
-  const month = now.getMonth(); // 0-11
-  const day = now.getDate(); // 1-31
+  const month = now.getMonth(); // 0 = Jan, 11 = Dec
+  const day = now.getDate();
   const year = now.getFullYear();
 
-  const getNthDayOfWeek = (year: number, month: number, dayOfWeek: number, week: number): number => {
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
-    const firstOccurrence = 1 + (dayOfWeek - firstDayOfMonth + 7) % 7;
-    return firstOccurrence + (week - 1) * 7;
+  const getNthDayOfWeek = (y: number, m: number, dow: number, w: number): number => {
+    const firstDay = new Date(y, m, 1).getDay();
+    const firstOccur = 1 + (dow - firstDay + 7) % 7;
+    return firstOccur + (w - 1) * 7;
   };
 
   let theme: SeasonalTheme = 'none';
 
-  // --- Specific Holiday Checks ---
-  if (month === 0 && day === 1) theme = 'new_year';
-  else if (month === 1 && day === 14) theme = 'valentines';
-  else if (month === 2 && day === 17) theme = 'st_patricks';
-  else if (month === 4 && day === getNthDayOfWeek(year, 4, 0, 2)) theme = 'mothers_day';
-  else if (month === 5 && day === getNthDayOfWeek(year, 5, 0, 3)) theme = 'fathers_day';
-  else if (month === 6 && day === 4) theme = 'patriotic';
-  else if (month === 8 && day === getNthDayOfWeek(year, 8, 1, 1)) theme = 'labor_day';
-  else if (month === 9) theme = 'halloween';
-  else if (month === 10 && day === getNthDayOfWeek(year, 10, 4, 4)) theme = 'thanksgiving';
-  else if (month === 11 && day >= 24 && day <= 25) theme = 'christmas';
+  // --- Priority 1: Holiday Windows ---
+  if (month === 11) {
+    theme = 'winter_holiday'; // Dec 1-31
+  } else if (month === 0 && day === 1) {
+    theme = 'new_year'; // Jan 1st
+  } else if (month === 9 && day >= 20) {
+    theme = 'halloween'; // Oct 20-31
+  } else if (month === 1 && day <= 15) {
+    theme = 'valentines_day'; // Feb 1-15
+  } else if (month === 2 && day >= 10 && day <= 20) {
+    theme = 'st_patricks'; // Mar 10-20
+  } else if (month === 6 && day === 4) {
+    theme = 'patriotic';
+  } else if (month === 10 && day === getNthDayOfWeek(year, 10, 4, 4)) {
+    theme = 'thanksgiving';
+  }
 
-  // --- Seasonal Fallbacks ---
+  // --- Priority 2: Strict Neutrality Fallbacks ---
   if (theme === 'none') {
-    switch (month) {
-      case 11: case 0: case 1: theme = 'winter'; break;
-      case 2: theme = 'spring'; break;
-      case 3: theme = 'easter'; break;
-      case 4: theme = 'spring'; break;
-      case 5: case 6: case 7: theme = 'summer'; break;
-      case 8: case 10: theme = 'early_fall'; break;
-      default: theme = 'none';
+    if (month === 0 || month === 1) {
+      theme = 'winter'; // Jan/Feb (Neutral - Stars/Snowflakes ONLY)
+    } else if (month >= 2 && month <= 4) {
+      theme = 'spring';
+    } else if (month >= 5 && month <= 7) {
+      theme = 'summer';
+    } else if (month >= 8 && month <= 10) {
+      theme = 'early_fall';
     }
   }
 
   const accents = seasonalAccents[theme] || [];
-
   return { theme, accents };
 };

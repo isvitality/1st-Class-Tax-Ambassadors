@@ -1,3 +1,4 @@
+
 import { SeasonalTheme } from '../hooks/useSeasonalTheme';
 
 // Define a type for a single theme's content
@@ -18,7 +19,7 @@ type ThemedAsset = {
 const newHeroUrl = "https://geotapmedia.com/FirstClassTaxAmbassadors/images/hero.png";
 
 // Create a mapping of theme to assets
-export const themeAssets: Record<SeasonalTheme | 'none', ThemedAsset> = {
+export const themeAssets: Record<SeasonalTheme, ThemedAsset> = {
   // Seasons
   winter: {
     heroBackground: newHeroUrl,
@@ -86,7 +87,8 @@ export const themeAssets: Record<SeasonalTheme | 'none', ThemedAsset> = {
       description: "A new year means new opportunities. Watch how we help clients set and achieve ambitious tax goals."
     }
   },
-  valentines: {
+  // Fix: Use 'valentines_day' to match SeasonalTheme type
+  valentines_day: {
     heroBackground: newHeroUrl,
     accentImage: 'https://geotapmedia.com/VictoryDiamondFinancialServices/images/theme-valentines.png',
     quote: {
@@ -203,7 +205,8 @@ export const themeAssets: Record<SeasonalTheme | 'none', ThemedAsset> = {
       description: "This Thanksgiving, we're grateful for our clients. See the stories of tax success and security that we've had the privilege to be a part of."
     }
   },
-  christmas: {
+  // Fix: Use 'winter_holiday' to match SeasonalTheme type
+  winter_holiday: {
     heroBackground: newHeroUrl,
     accentImage: 'https://geotapmedia.com/VictoryDiamondFinancialServices/images/theme-christmas.png',
     quote: {

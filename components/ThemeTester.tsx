@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useSimulatedDateContext } from '../contexts/SimulatedDateContext';
 
@@ -6,21 +7,13 @@ const availableThemes = [
   { value: 'PEAK_SEASON', label: 'Tax Season (Peak)' },
   { value: 'OFF_SEASON', label: 'Tax Season (Off)' },
   { value: 'PRE_SEASON', label: 'Tax Season (Pre)' },
-  { value: 'winter', label: 'Winter (Generic)' },
-  { value: 'new_year', label: "New Year's Day (Jan 1)" },
-  { value: 'valentines', label: "Valentine's Day (Feb 14)" },
-  { value: 'st_patricks', label: "St. Patrick's Day (Mar 17)" },
-  { value: 'spring', label: 'Spring (Generic)' },
-  { value: 'easter', label: 'Easter (Apr)' },
-  { value: 'mothers_day', label: "Mother's Day (May)" },
-  { value: 'fathers_day', label: "Father's Day (Jun)" },
-  { value: 'summer', label: 'Summer (Generic)' },
-  { value: 'patriotic', label: 'Independence Day (July 4th)' },
-  { value: 'labor_day', label: 'Labor Day (Sep)' },
-  { value: 'early_fall', label: 'Fall (Generic)' },
-  { value: 'halloween', label: 'Halloween (Oct 31)' },
-  { value: 'thanksgiving', label: 'Thanksgiving (Nov)' },
-  { value: 'christmas', label: 'Christmas (Dec 25)' },
+  { value: 'winter', label: 'Winter (Neutral Jan/Feb)' },
+  { value: 'winter_holiday', label: 'Winter Holiday (Festive Dec)' },
+  { value: 'valentines_day', label: "Valentine's Day (Feb 1-15)" },
+  { value: 'st_patricks', label: "St. Patrick's Day (Mar 10-20)" },
+  { value: 'spring', label: 'Spring' },
+  { value: 'summer', label: 'Summer' },
+  { value: 'halloween', label: 'Halloween (Oct 20-31)' },
 ];
 
 interface ThemeTesterProps {

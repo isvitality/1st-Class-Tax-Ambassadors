@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSeasonalTheme } from '../hooks/useSeasonalTheme';
 import { 
@@ -9,7 +10,6 @@ import {
   PatrioticStars, 
   Fireworks, 
   FallingHearts,
-  FallingEggs,
   FallingClovers
 } from './seasonal';
 
@@ -23,17 +23,18 @@ const SeasonalOverlay: React.FC = () => {
         return <FallingLeaves />;
       case 'halloween':
         return <HalloweenSpirits />;
+      case 'winter_holiday':
+        // Dec window: Festive elements allowed here
+        return <Snowfall />; 
       case 'winter':
-      case 'christmas':
+        // Jan/Feb window: Neutral elements only (Snow/Stars)
         return <Snowfall />;
-      case 'valentines':
+      case 'valentines_day':
       case 'mothers_day':
       case 'fathers_day':
         return <FallingHearts />;
       case 'spring':
         return <SpringBlossoms />;
-      case 'easter':
-        return <FallingEggs />;
       case 'st_patricks':
         return <FallingClovers />;
       case 'summer':
@@ -46,7 +47,6 @@ const SeasonalOverlay: React.FC = () => {
           </>
         );
       case 'labor_day':
-      case 'new_year':
         return <Fireworks />;
       default:
         return null;
